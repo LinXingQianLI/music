@@ -1,15 +1,49 @@
 package com.beicai.util
 
 import java.text.SimpleDateFormat
-import java.util.{Base64, Locale}
+import java.util.{Base64, Calendar, Locale}
 import java.util.regex.Pattern
+import java.math.BigDecimal
+
+import scala.math.BigDecimal.RoundingMode
 
 /**
   * Created by Administrator on 2018/5/7.
   */
 object Utils {
+  def getScale(doubleValue: Double, scale: Int) = {
+    val bigDecimal = new BigDecimal(doubleValue)
+    bigDecimal.setScale(scale,RoundingMode.HALF_UP)
+  }
+
+  /**
+    * 日期加减
+    *
+    * @param longTime
+    * @param day
+    * @return
+    */
+  def caculateDate(longTime: Long, day: Int) = {
+    val calender = Calendar.getInstance()
+    calender.setTimeInMillis(longTime)
+    calender.add(Calendar.DAY_OF_MONTH,day)
+    calender.getTimeInMillis
+  }
+
+  /**
+    * 验证是否是一个数字
+    * @param numberString
+    * @return
+    */
+  def validateNumber(numberString: String) = {
+    val reg = "[0-9]{1,}"
+    val pattern =Pattern.compile(reg)
+    pattern.matcher(numberString).matches()
+  }
+
   /**
     * 验证ip是否符合ip格式
+    *
     * @param ip
     */
   def validateIP(ip:String)={

@@ -12,4 +12,8 @@ object GlobalConstants {
   final val HDFS_LOG_PATH_PREFIX:String = "/logs/"
   //任务的完整输入路径
   final val TASK_INPUT_PATH:String = "task_input_path"
+  //开始时间
+  final val TASK_PARAM_START_DATE = "start_date"
+  //结束时间
+  final  val TASK_PARAM_END_DATE = "end_date"
 }
